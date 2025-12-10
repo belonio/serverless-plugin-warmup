@@ -9,9 +9,36 @@
 
 Keep your lambdas warm during winter.
 
+## Branch Strategy
+
+This fork follows a specific branching strategy:
+- **main branch**: Synced with the original repository's main branch for upstream updates
+- **master branch**: Built from main branch and contains custom features, fixes, and enhancements
+- All new features and fixes are developed and merged into the master branch
+
+## Fork Modifications
+
+This fork includes the following enhancements and modifications:
+
+### Package Publishing
+- **Scoped Package**: Published as `@belonio/serverless-plugin-warmup` to GitHub Packages
+- **Automated Releases**: Semantic-release integration for automatic versioning and publishing
+- **GitHub Actions**: Automated CI/CD pipeline with testing and release workflows
+
+### Development Improvements
+- **ESLint v9**: Updated to latest ESLint with flat config system
+- **Dependency Updates**: Latest versions of development dependencies
+- **Semantic Release**: Conventional commits for automated changelog generation
+- **GitHub Packages**: Direct publishing to GitHub Package Registry
+
+### Configuration Updates
+- **Modern ESLint Config**: Migrated from deprecated .eslintrc to eslint.config.js
+- **Simplified Dependencies**: Removed conflicting airbnb-base configuration
+- **Automated Workflows**: CI testing on multiple Node.js versions and platforms
+
 **Requirements:**
 
-- Node _v18.x_ or higher
+- Node _v18.x_ or higher (Node.js 24 LTS recommended)
 - Serverless _v3.8_ or higher
 - AWS provider
 
