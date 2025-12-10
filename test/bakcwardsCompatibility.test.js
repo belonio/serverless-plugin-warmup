@@ -22,7 +22,7 @@ describe('Backward compatibility', () => {
       });
       const pluginUtils = getPluginUtils();
 
-      // eslint-disable-next-line no-new
+       
       new WarmUp(serverless, {}, pluginUtils);
     });
 
@@ -37,7 +37,7 @@ describe('Backward compatibility', () => {
       });
       const pluginUtils = getPluginUtils();
 
-      // eslint-disable-next-line no-new
+       
       new WarmUp(serverless, {}, pluginUtils);
 
       expect(defineFunctionProperties).toHaveBeenCalledTimes(1);
@@ -54,7 +54,7 @@ describe('Backward compatibility', () => {
       });
       const pluginUtils = getPluginUtils();
 
-      // eslint-disable-next-line no-new
+       
       new WarmUp(serverless, {}, pluginUtils);
 
       expect(defineCustomProperties).toHaveBeenCalledTimes(1);

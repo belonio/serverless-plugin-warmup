@@ -9,7 +9,7 @@ const path = require('path');
 function getWarmerConfig(config, defaultOpts) {
   const folderName = (typeof config.folderName === 'string') ? config.folderName : defaultOpts.folderName;
 
-  /* eslint-disable no-nested-ternary */
+   
   return {
     folderName,
     pathHandler: path.join(folderName, 'index.warmUp'),
@@ -51,7 +51,7 @@ function getWarmerConfig(config, defaultOpts) {
       : defaultOpts.logRetentionInDays,
     prewarm: (config.prewarm !== undefined) ? config.prewarm : defaultOpts.prewarm,
   };
-  /* eslint-enable no-nested-ternary */
+   
 }
 
 /**
@@ -61,7 +61,7 @@ function getWarmerConfig(config, defaultOpts) {
  * @return {Object} - Function-specific configuration options
  * */
 function getFunctionConfig(config, defaultOpts) {
-  /* eslint-disable no-nested-ternary */
+   
   return {
     enabled: (config.enabled !== undefined)
       ? config.enabled
@@ -79,7 +79,7 @@ function getFunctionConfig(config, defaultOpts) {
       ? config.concurrency
       : defaultOpts.concurrency,
   };
-  /* eslint-enable no-nested-ternary */
+   
 }
 
 /**
@@ -129,7 +129,7 @@ function getFunctionsByWarmer(service, stage, configsByWarmer, serverlessClasses
     Object.entries(fn.config)
       .forEach(([warmerName, config]) => {
         if (!isEnabled(config.enabled)) return;
-        // eslint-disable-next-line no-param-reassign
+         
         if (!warmersAcc[warmerName]) warmersAcc[warmerName] = [];
         warmersAcc[warmerName].push({ name: fn.name, config });
       });

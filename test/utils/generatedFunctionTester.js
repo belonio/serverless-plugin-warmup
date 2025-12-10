@@ -1,6 +1,6 @@
 /* global jest */
 
-/* eslint-disable max-classes-per-file, no-multi-assign */
+ 
 class GeneratedFunctionTester {
   constructor(func) {
     this.func = func;
@@ -23,10 +23,10 @@ class GeneratedFunctionTester {
       },
     };
   }
-  /* eslint-enable max-classes-per-file, no-multi-assign */
+   
 
   generatedWarmupFunction() {
-    // eslint-disable-next-line no-new-func
+     
     return new Function('dependencies', 'process', 'console', `
       const require = (dep) => {
         if (!dependencies[dep]) {

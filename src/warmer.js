@@ -10,18 +10,18 @@ const execAsync = util.promisify(exec);
  * @description Add warmer role to service
  * */
 function addWarmUpFunctionRoleToResources(service, stage, warmerName, warmerConfig) {
-  // eslint-disable-next-line no-param-reassign
+   
   warmerConfig.role = `WarmUpPlugin${capitalize(warmerName)}Role`;
   if (typeof service.resources !== 'object') {
-    // eslint-disable-next-line no-param-reassign
+     
     service.resources = {};
   }
   if (typeof service.resources.Resources !== 'object') {
-    // eslint-disable-next-line no-param-reassign
+     
     service.resources.Resources = {};
   }
 
-  // eslint-disable-next-line no-param-reassign
+   
   service.resources.Resources[warmerConfig.role] = {
     Type: 'AWS::IAM::Role',
     Properties: {
@@ -202,7 +202,7 @@ export const warmUp = async (event, context) => {
  * @description Add warmer function to service
  * */
 function addWarmUpFunctionToService(service, warmerName, warmerConfig) {
-  // eslint-disable-next-line no-param-reassign
+   
   service.functions[`warmUpPlugin${capitalize(warmerName)}`] = {
     description: `Serverless WarmUp Plugin (warmer "${warmerName}")`,
     events: warmerConfig.events,
