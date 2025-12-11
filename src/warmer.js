@@ -10,18 +10,18 @@ const execAsync = util.promisify(exec);
  * @description Add warmer role to service
  * */
 function addWarmUpFunctionRoleToResources(service, stage, warmerName, warmerConfig) {
-   
+
   warmerConfig.role = `WarmUpPlugin${capitalize(warmerName)}Role`;
   if (typeof service.resources !== 'object') {
-     
+
     service.resources = {};
   }
   if (typeof service.resources.Resources !== 'object') {
-     
+
     service.resources.Resources = {};
   }
 
-   
+
   service.resources.Resources[warmerConfig.role] = {
     Type: 'AWS::IAM::Role',
     Properties: {
@@ -202,7 +202,7 @@ export const warmUp = async (event, context) => {
  * @description Add warmer function to service
  * */
 function addWarmUpFunctionToService(service, warmerName, warmerConfig) {
-   
+
   service.functions[`warmUpPlugin${capitalize(warmerName)}`] = {
     description: `Serverless WarmUp Plugin (warmer "${warmerName}")`,
     events: warmerConfig.events,
@@ -210,7 +210,7 @@ function addWarmUpFunctionToService(service, warmerName, warmerConfig) {
     memorySize: warmerConfig.memorySize,
     name: warmerConfig.name,
     ...(warmerConfig.architecture ? { architecture: warmerConfig.architecture } : {}),
-    runtime: 'nodejs22.x',
+    runtime: 'nodejs24.x',
     package: warmerConfig.package,
     timeout: warmerConfig.timeout,
     ...(Object.keys(warmerConfig.environment).length
