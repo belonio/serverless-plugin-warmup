@@ -1360,7 +1360,9 @@ describe('Serverless warmup plugin warmup:warmers:addWarmers:addWarmers hook', (
 
     expect(plugin.serverless.service.functions.warmUpPluginDefault)
       .toEqual(getExpectedFunctionConfig({ architecture: 'arm64' }));
-    expect(exec).not.toHaveBeenCalled();
+    expect(exec).toHaveBeenCalledTimes(2);
+    expect(exec).toHaveBeenNthCalledWith(1, 'npm init -y', { cwd: path.join('testPath', '.warmup', 'default') }, expect.anything());
+    expect(exec).toHaveBeenNthCalledWith(2, 'npm install --save @aws-sdk/client-lambda @smithy/node-http-handler', { cwd: path.join('testPath', '.warmup', 'default') }, expect.anything());
   });
 
   it('Should use the memory size from options if present', async () => {
@@ -1569,9 +1571,10 @@ describe('Serverless warmup plugin warmup:warmers:addWarmers:addWarmers hook', (
 
     expect(plugin.serverless.service.functions.warmUpPluginDefault)
       .toEqual(getExpectedFunctionConfig({ tracing: true }));
-    expect(exec).toHaveBeenCalledTimes(2);
+    expect(exec).toHaveBeenCalledTimes(3);
     expect(exec).toHaveBeenNthCalledWith(1, 'npm init -y', { cwd: path.join('testPath', '.warmup', 'default') }, expect.anything());
-    expect(exec).toHaveBeenNthCalledWith(2, 'npm install --save aws-xray-sdk-core', { cwd: path.join('testPath', '.warmup', 'default') }, expect.anything());
+    expect(exec).toHaveBeenNthCalledWith(2, 'npm install --save @aws-sdk/client-lambda @smithy/node-http-handler', { cwd: path.join('testPath', '.warmup', 'default') }, expect.anything());
+    expect(exec).toHaveBeenNthCalledWith(3, 'npm install --save aws-xray-sdk-core', { cwd: path.join('testPath', '.warmup', 'default') }, expect.anything());
   });
 
   it('Should overide provider tracing setting if set up at the warmer config', async () => {
@@ -1601,7 +1604,9 @@ describe('Serverless warmup plugin warmup:warmers:addWarmers:addWarmers hook', (
 
     expect(plugin.serverless.service.functions.warmUpPluginDefault)
       .toEqual(getExpectedFunctionConfig({ tracing: false }));
-    expect(exec).not.toHaveBeenCalled();
+    expect(exec).toHaveBeenCalledTimes(2);
+    expect(exec).toHaveBeenNthCalledWith(1, 'npm init -y', { cwd: path.join('testPath', '.warmup', 'default') }, expect.anything());
+    expect(exec).toHaveBeenNthCalledWith(2, 'npm install --save @aws-sdk/client-lambda @smithy/node-http-handler', { cwd: path.join('testPath', '.warmup', 'default') }, expect.anything());
   });
 
   it('Should respect verbose from options if present', async () => {

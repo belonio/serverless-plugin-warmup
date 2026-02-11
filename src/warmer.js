@@ -192,8 +192,10 @@ export const warmUp = async (event, context) => {
   await fs.mkdir(handlerFolder, { recursive: true });
   await fs.writeFile(path.join(handlerFolder, 'index.mjs'), warmUpFunction);
 
+  await execAsync('npm init -y', { cwd: handlerFolder });
+  await execAsync('npm install --save @aws-sdk/client-lambda @smithy/node-http-handler', { cwd: handlerFolder });
+
   if (tracing) {
-    await execAsync('npm init -y', { cwd: handlerFolder });
     await execAsync('npm install --save aws-xray-sdk-core', { cwd: handlerFolder });
   }
 }

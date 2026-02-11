@@ -8,8 +8,16 @@ jest.mock('fs', () => ({
     rm: jest.fn(),
   },
 }));
+jest.mock('child_process', () => ({
+  exec: jest.fn((path, opts, cb) => cb()),
+}));
+
+jest.mock('child_process', () => ({
+  exec: jest.fn((path, opts, cb) => cb()),
+}));
 
 const fs = require('fs').promises;
+const { exec } = require('child_process');
 const path = require('path');
 const WarmUp = require('../src/index');
 const { getServerlessConfig, getPluginUtils, getExpectedFunctionConfig } = require('./utils/configUtils');
@@ -67,6 +75,7 @@ describe('Backward compatibility', () => {
       fs.mkdir.mockResolvedValue(undefined);
       fs.writeFile.mockClear();
       fs.writeFile.mockResolvedValue(undefined);
+      exec.mockClear();
     });
 
     it('should fallback to servicePath if serviceDir is not defined', async () => {
