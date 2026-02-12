@@ -118,7 +118,7 @@ import { NodeHttpHandler } from '@smithy/node-http-handler';
 const uninstrumentedLambdaClient = new LambdaClient({
   apiVersion: '2015-03-31',
   region: '${region}',
-  requestHandler: new NodeHttpHandler({ connectionTimeout: 1000 }),
+  requestHandler: new NodeHttpHandler({ connectionTimeout: 2000 }),
 });
 
 ${
